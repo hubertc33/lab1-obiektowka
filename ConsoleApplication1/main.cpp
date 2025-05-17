@@ -71,12 +71,10 @@ private:
 	float radius = 0.f;
 	float lifetime = 10.f;
 
-	// Skala rysowania i skala kolizji
 	static constexpr float HEALTH_SCALE = 0.2f;
 	static constexpr float TRIPLE_SCALE = 0.1f;
 	static constexpr float COLLISION_SCALE = 0.1f;
 
-	// Tekstury i ładowanie
 	static Texture2D& GetHeartTexture() {
 		static Texture2D tex{};
 		return tex;
@@ -105,8 +103,8 @@ private:
 struct DamagePopup {
 	Vector2 position;
 	std::string text;
-	float time;       // czas życia
-	float maxTime;    // maksymalny czas (np. 1s)
+	float time;       
+	float maxTime;   
 	Color color;
 
 	DamagePopup(Vector2 pos, int dmg)
@@ -114,8 +112,8 @@ struct DamagePopup {
 
 	bool Update(float dt) {
 		time += dt;
-		position.y -= 30 * dt; // unosi się
-		color.a = static_cast<unsigned char>(255 * (1.f - time / maxTime)); // zanikanie
+		position.y -= 30 * dt; 
+		color.a = static_cast<unsigned char>(255 * (1.f - time / maxTime)); 
 		return time >= maxTime;
 	}
 
@@ -278,7 +276,7 @@ protected:
 
 		transform.rotation = Utils::RandomFloat(0, 360);
 
-		//HP na podstawie rozmiaru i typu
+		
 		int size = GetSize();
 		int typeBonus = 0;
 
@@ -432,9 +430,9 @@ public:
 		switch (type) {
 		case WeaponType::BULLET:
 			if (isEnemy)
-				DrawCircleV(transform.position, 6.f, PURPLE); // dla bossa
+				DrawCircleV(transform.position, 6.f, PURPLE); 
 			else
-				DrawCircleV(transform.position, 5.f, WHITE); // dla gracza
+				DrawCircleV(transform.position, 5.f, WHITE); 
 			break;
 
 		case WeaponType::LASER:
@@ -496,9 +494,9 @@ public:
 		texture = LoadTexture("boss.png");
 		scale = 0.3f;
 
-		// Ustaw pozycję na górze, na środku ekranu
+		
 		transform.position = { w * 0.5f, -100 };
-		physics.velocity = { 0.f, 50.f };  // powoli w dół
+		physics.velocity = { 0.f, 50.f }; 
 		transform.rotation = 0.f;
 	}
 
@@ -511,12 +509,11 @@ public:
 	bool Update(float dt) override {
 		shootTimer += dt;
 
-		// Ruch pionowy do pozycji docelowej
+		
 		if (transform.position.y < 200) {
 			transform.position.y += physics.velocity.y * dt;
 		}
 		else {
-			// Oscylacja w poziomie
 			if (movingRight) {
 				transform.position.x += horizontalSpeed * dt;
 				if (transform.position.x > Renderer::Instance().Width() - 300) {
@@ -531,7 +528,6 @@ public:
 			}
 		}
 
-		// Strzelanie co 2 sekundy
 		if (shootTimer >= shootInterval) {
 			Vector2 vel = { 0, 900 };
 			Vector2 firePos = transform.position;
@@ -540,7 +536,7 @@ public:
 			shootTimer = 0.f;
 		}
 
-		return true; // boss nie znika automatycznie
+		return true; 
 	}
 
 
@@ -552,9 +548,8 @@ public:
 		};
 		DrawTextureEx(texture, pos, transform.rotation, scale, WHITE);
 
-		//Pasel HP bosa
-		float barW = 300.f; // szerokość paska
-		float barH = 30.f;  // wysokość paska
+		float barW = 300.f;
+		float barH = 30.f;  
 		float ratio = (float)hp / baseHp;
 		float filledW = barW * ratio;
 
@@ -567,7 +562,7 @@ public:
 		DrawRectangleV(hpPos, { barW, barH }, DARKGRAY);
 		DrawRectangleV(hpPos, { filledW, barH }, RED);
 
-		// Dodanie tekstu HP na środku paska
+	
 		std::string hpText = std::to_string(hp) + " / " + std::to_string(baseHp);
 		int textWidth = MeasureText(hpText.c_str(), 20);
 		int textX = static_cast<int>(hpPos.x + barW / 2 - textWidth / 2);
@@ -576,7 +571,7 @@ public:
 		DrawText(hpText.c_str(), textX, textY, 20, WHITE);
 	}
 	float GetRadius() const override {
-		return (texture.width * scale) * 0.4f; // większy niż obrazek
+		return (texture.width * scale) * 0.4f; 
 	}
 
 
@@ -912,9 +907,9 @@ public:
 							}
 							else if (pickup.GetType() == Pickup::Type::TRIPLESHOT) {
 								tripleShotActive = true;
-								tripleShotTimer = 5.f; // power-up trwa 5 sekund
+								tripleShotTimer = 5.f;
 							}
-							return true; // pickup zebrany
+							return true; 
 						}
 						return pickup.Update(dt);
 					});
@@ -948,7 +943,7 @@ public:
 				else if (hpRatio < 0.6f)
 					hpColor = YELLOW;
 
-				DrawRectangle(10, 10, 200, 20, DARKGRAY);  // tło
+				DrawRectangle(10, 10, 200, 20, DARKGRAY);  
 				DrawRectangle(10, 10, static_cast<int>(200 * hpRatio), 20, hpColor);
 				DrawText("HP", 215, 10, 20, hpColor);
 
