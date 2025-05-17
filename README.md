@@ -6,7 +6,7 @@
 - ✅ Dodanie **paska HP** dla gracza
 - ✅ Dodanie **paska HP dla asteroid**
 - ✅ Dodanie **licznika zniszczonych asteroid**
-- ✅ Dodanie **wskaźnika obrażeń** otrzymywanych przez gracza
+- ✅ Dodanie **wskaźnika obrażeń** zadanych przez gracza
 - ✅ Dodanie **losowo pojawiających się serc**, które odnawiają HP gracza
 - ✅ Dodanie **power-upa**, który po zebraniu potraja wystrzał z broni
 - ✅ Dodanie **nowego przeciwnika** – ośmiokąta
