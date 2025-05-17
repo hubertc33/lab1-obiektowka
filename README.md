@@ -12,7 +12,7 @@
 - ✅ Dodanie **nowego przeciwnika** – ośmiokąta
 - ✅ Dodanie **bossa**, który pojawia się po osiągnięciu wyniku będącego wielokrotnością 50
 - ✅ Asteroidy mają **różne HP w zależności od rozmiaru i typu**
-- ✅ Dodanie **nowej broni – `ROCKET` (duże obrażenia, wolniejszy strzał)
+- ✅ Dodanie **nowej broni** – `ROCKET` (duże obrażenia, wolniejszy strzał)
 - ✅ Zmiana zachowania pocisku typu `BULLET` – **przyspieszono jego strzał**
 
 
